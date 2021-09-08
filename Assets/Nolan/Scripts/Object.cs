@@ -6,6 +6,9 @@ public class Object : MonoBehaviour
 {
     public string name;
     public Sprite image;
-    public string description;
+    public int maxLvlKnowledge;
+    public string descriptionlvl1;
+    public string descriptionlvl2;
+    public string descriptionlvl3;
     public string price;
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public Canvas interact;
     private bool canvasOpen;
+
+    public TextMeshProUGUI levelText;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +52,10 @@ public class PlayerController : MonoBehaviour
                 canvasOpen = false;
             }
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            UpgradeLevelKnowledge();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,7 +67,6 @@ public class PlayerController : MonoBehaviour
             objCollision = true;
             interact.transform.position = collision.transform.position;
             interact.gameObject.SetActive(true);
-            //gameManager.OpenCanvas(collision.GetComponent<Object>());
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -73,5 +79,11 @@ public class PlayerController : MonoBehaviour
             gameManager.CloseCanvas();
             interact.gameObject.SetActive(false);
         }
+    }
+
+    void UpgradeLevelKnowledge()
+    {
+        levelKnowledge++;
+        levelText.text = levelKnowledge.ToString();
     }
 }
