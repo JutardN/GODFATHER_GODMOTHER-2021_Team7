@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,16 +17,26 @@ public class PlayerController : MonoBehaviour
     private bool objCollision;
     private Object saveObj;
 
+    public int argent = 1000;
+    public int miseTotale;
+    public Text miseTotaleT;
+    public Text argentT;
+
     public Canvas interact;
     private bool canvasOpen;
 
     public TextMeshProUGUI levelText;
+
+    MiseArgent checkMoney;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         gameManager = GameManager.Instance;
+        argentT.text = "" + argent;
+        checkMoney = FindObjectOfType<MiseArgent>();
+
     }
 
     // Update is called once per frame
@@ -44,6 +55,8 @@ public class PlayerController : MonoBehaviour
                 gameManager.OpenCanvas(saveObj);
                 canvasOpen = true;
                 interact.gameObject.SetActive(false);
+
+                checkMoney.ActiveMoney();
             }
             else if(Input.GetKeyDown(KeyCode.E) && canvasOpen)
             {

@@ -5,65 +5,96 @@ using UnityEngine.UI;
 
 public class MiseArgent : MonoBehaviour
 {
-
+    //scoreVideo = FindObjectOfType<VideosManager>();
     public Text moneySpend;
 
     public Text prixDepart;
     public Text miseActuelle;
-    public Text maMise;
 
     public int prixDepartMoney;
     public int miseActuelleMoney;
     public int maMiseMoney;
 
+    bool iSpendMoney = false;
+    bool iRecoverMoney = false;
     public int coeffMoney;
     int moneyValue;
+
+    PlayerController controller;
 
     // Start is called before the first frame update
     void Start()
     {
+        controller = FindObjectOfType<PlayerController>();
         prixDepart.text = "" + prixDepartMoney;
         miseActuelle.text = "" + miseActuelleMoney;
-        maMise.text = "" + maMiseMoney;
+        moneySpend.text = "" + miseActuelleMoney;
+        moneyValue = miseActuelleMoney;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
     public void addMoney()
     {
-
         moneyValue += coeffMoney;
         moneySpend.text = "" + moneyValue;
 
+        iSpendMoney = true;
+        iRecoverMoney = false;
     }
     public void subMoney()
     {
-        if (moneyValue > 0)
+        if (moneyValue > prixDepartMoney)
         {
             moneyValue -= coeffMoney;
             moneySpend.text = "" + moneyValue;
+
+            iSpendMoney = false;
+            iRecoverMoney = true;
         }
     }
 
     public void ValiderMoney()
     {
-        maMiseMoney = moneyValue;
-        moneyValue = 0;
-        miseActuelleMoney += maMiseMoney;
+        if (iSpendMoney == true)
+        {
+            miseActuelleMoney = moneyValue;
+            moneySpend.text = "" + miseActuelleMoney;
+            miseActuelle.text = "" + miseActuelleMoney;
 
-        moneySpend.text = "" + moneyValue;
-        maMise.text = "" + maMiseMoney;
-        miseActuelle.text = "" + miseActuelleMoney;
+            controller.argent -= moneyValue;
+            controller.miseTotale += moneyValue;
+            controller.argentT.text = "" + controller.argent;
+            controller.miseTotaleT.text = "" + controller.miseTotale;
+
+            iSpendMoney = false;
+        }
+        else if (iRecoverMoney == true && miseActuelleMoney != prixDepartMoney)
+        {
+            miseActuelleMoney = moneyValue;
+            moneySpend.text = "" + miseActuelleMoney;
+            miseActuelle.text = "" + miseActuelleMoney;
+            
+            controller.argent += moneyValue;
+            controller.miseTotale -= moneyValue;
+            controller.argentT.text = "" + controller.argent;
+            controller.miseTotaleT.text = "" + controller.miseTotale;
+            iRecoverMoney = false;
+        }
+
     }
-    public void AnnulerMoney()
+
+    /*public void AnnulerMoney()
     {
-        maMiseMoney = 0;
-        moneyValue = 0;
-        maMise.text = "" + maMiseMoney;
+        moneyValue = prixDepart;
         moneySpend.text = "" + moneyValue;
+    }*/
+    public void ActiveMoney()
+    {
+        moneyValue = miseActuelleMoney;
     }
 }
