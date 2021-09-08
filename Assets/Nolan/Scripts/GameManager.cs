@@ -30,11 +30,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI nameObj;
     public TextMeshProUGUI descObj;
     public TextMeshProUGUI priceObj;
+    private PlayerController player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -48,7 +49,19 @@ public class GameManager : MonoBehaviour
         objectToShow.gameObject.SetActive(true);
         imageObj.sprite = obj.image;
         nameObj.text = obj.name;
-        descObj.text = obj.description;
+        if (player.levelKnowledge >= 2 && obj.maxLvlKnowledge==2)
+        {
+            descObj.text = obj.descriptionlvl3;
+        }
+        else if (player.levelKnowledge >= 1 && obj.maxLvlKnowledge >= 1)
+        {
+            descObj.text = obj.descriptionlvl2;
+        }
+        else
+        {
+            descObj.text = obj.descriptionlvl1;
+        }
+
         priceObj.text = obj.price;
     }
 
