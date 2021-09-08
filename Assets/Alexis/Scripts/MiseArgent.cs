@@ -13,7 +13,7 @@ public class MiseArgent : MonoBehaviour
     public Text maMise;
 
     public int prixDepartMoney;
-    public int MiseActuelleMoney;
+    public int miseActuelleMoney;
     public int maMiseMoney;
 
     public int coeffMoney;
@@ -23,7 +23,7 @@ public class MiseArgent : MonoBehaviour
     void Start()
     {
         prixDepart.text = "" + prixDepartMoney;
-        miseActuelle.text = "" + MiseActuelleMoney;
+        miseActuelle.text = "" + miseActuelleMoney;
         maMise.text = "" + maMiseMoney;
     }
 
@@ -52,7 +52,12 @@ public class MiseArgent : MonoBehaviour
     public void ValiderMoney()
     {
         maMiseMoney = moneyValue;
+        moneyValue = 0;
+        miseActuelleMoney += maMiseMoney;
+
+        moneySpend.text = "" + moneyValue;
         maMise.text = "" + maMiseMoney;
+        miseActuelle.text = "" + miseActuelleMoney;
     }
     public void AnnulerMoney()
     {
