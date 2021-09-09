@@ -802,6 +802,17 @@ MonoBehaviour:
   nameObj: {fileID: 2010259256}
   descObj: {fileID: 489019369}
   priceObj: {fileID: 584344130}
+  player: {fileID: 0}
+  roundToEnd: 0
+  currentRound: 0
+  dayEnd: 0
+  currentDay: 0
+  eachObject: []
+  saveObj: {fileID: 0}
+  eachObjectRound2: []
+  eachObjectRound3: []
+  parentObject: {fileID: 0}
+  scriptMise: {fileID: 0}
 --- !u!1 &487428814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,16 +1738,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Rond
+  _name: 
   image: {fileID: -2413806693520163455, guid: 6227865c3ef884c449a8b734bdd29b89, type: 3}
   maxLvlKnowledge: 2
   descriptionlvl1: Rond jaune
   descriptionlvl2: "Etrange cr\xE9ature"
   descriptionlvl3: Pac man entier
+  defaultPrice: 0
   price: 500
-  price1stRound: 0
-  price2ndRound: 0
-  priceFinalRound: 0
+  priceEachRound: 
+  playerProperty: 0
+  sellingPrice: 0
+  misePlayer: 0
 --- !u!1 &1061981144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,16 +2296,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Capsule
+  _name: 
   image: {fileID: -9095717837082945937, guid: 3a95550633c17c34f840bccf069dc9bc, type: 3}
   maxLvlKnowledge: 0
   descriptionlvl1: "Pillule g\xE9ante"
   descriptionlvl2: 
   descriptionlvl3: 
+  defaultPrice: 0
   price: 200
-  price1stRound: 0
-  price2ndRound: 0
-  priceFinalRound: 0
+  priceEachRound: 
+  playerProperty: 0
+  sellingPrice: 0
+  misePlayer: 0
 --- !u!1 &1510701882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,16 +2651,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Diamant
+  _name: 
   image: {fileID: 3625043607559282579, guid: ca56ab08d7f7b77418212b63d73be6dd, type: 3}
   maxLvlKnowledge: 1
   descriptionlvl1: Diamant bleu
   descriptionlvl2: "Diamant pure \xE0 99%"
   descriptionlvl3: 
+  defaultPrice: 0
   price: 1200
-  price1stRound: 0
-  price2ndRound: 0
-  priceFinalRound: 0
+  priceEachRound: 
+  playerProperty: 0
+  sellingPrice: 0
+  misePlayer: 0
 --- !u!1 &1778797884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,6 +2840,7 @@ GameObject:
   - component: {fileID: 1890695745}
   - component: {fileID: 1890695744}
   - component: {fileID: 1890695743}
+  - component: {fileID: 1890695748}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2851,6 +2869,7 @@ MonoBehaviour:
   interact: {fileID: 323121872}
   levelText: {fileID: 385487621}
   checkMoney: {fileID: 835018730}
+  anim: {fileID: 0}
 --- !u!61 &1890695744
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2864,18 +2883,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.1}
+  m_Offset: {x: 0, y: 0.2285862}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4.61, y: 8.53}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.61, y: 7.524228}
   m_EdgeRadius: 0
 --- !u!50 &1890695745
 Rigidbody2D:
@@ -2938,7 +2957,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec30cf244366fe4419693f40650fedf5, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2957,13 +2976,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890695742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.84, y: -0.09350875, z: 0}
+  m_LocalPosition: {x: -2.84, y: 3.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2075592647}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1890695748
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890695742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9b37c2870aa744745b2d297f025f6f39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1907496701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3539,6 +3577,7 @@ GameObject:
   - component: {fileID: 2075592647}
   - component: {fileID: 2075592646}
   - component: {fileID: 2075592645}
+  - component: {fileID: 2075592648}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3611,3 +3650,35 @@ Transform:
   m_Father: {fileID: 1890695747}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2075592648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075592644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2

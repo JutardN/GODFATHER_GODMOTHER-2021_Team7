@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
 
     private bool onCouch;
 
+    public Animator anim;
+
+    private SpriteRenderer render;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +46,8 @@ public class PlayerController : MonoBehaviour
             checkMoney = FindObjectOfType<MiseArgent>();
         }
         miseTotaleT.text = "0";
+        anim = this.GetComponent<Animator>();
+        render = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -49,6 +55,24 @@ public class PlayerController : MonoBehaviour
     {
         hz = Input.GetAxis("Horizontal");
         rb.velocity = new Vector3(hz * speed, 0, 0);
+
+        if (Input.GetButton("Horizontal"))
+        {
+            if (hz > 0)
+            {
+                render.flipX = false;
+                anim.SetBool("Walking", true);
+            }
+            else if (hz < 0)
+            {
+                render.flipX = true;
+                anim.SetBool("Walking", true);
+            }
+        }
+        else if(!Input.GetButton("Horizontal"))
+        {
+            anim.SetBool("Walking", false);
+        }
     }
 
     private void Update()
