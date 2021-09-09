@@ -39,6 +39,10 @@ public class PlayerController : MonoBehaviour
     private int playerID = 0;
     private Player player;
 
+    public AudioSource footStep;
+    public AudioSource question;
+
+
     private void Awake()
     {
         player =ReInput.players.GetPlayer(playerID);
@@ -48,6 +52,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        footStep = GetComponent<AudioSource>();
+
         gameManager = GameManager.Instance;
         argentT.text = "" + argent;
         if (!checkMoney)
@@ -71,16 +78,26 @@ public class PlayerController : MonoBehaviour
             {
                 render.flipX = false;
                 anim.SetBool("Walking", true);
+                if (!footStep.isPlaying)
+                {
+                    footStep.Play();
+                }
             }
             else if (hz < 0)
             {
                 render.flipX = true;
                 anim.SetBool("Walking", true);
+                if (!footStep.isPlaying)
+                {
+                    footStep.Play();
+                }
             }
+            
         }
         else /*if(!player.GetButton("Movement"))*/
         {
             anim.SetBool("Walking", false);
+            footStep.Stop();
         }
     }
 
@@ -93,6 +110,7 @@ public class PlayerController : MonoBehaviour
                 gameManager.OpenCanvas(saveObj);
                 canvasOpen = true;
                 interact.gameObject.SetActive(false);
+                question.Play();
 
             }
             else if(player.GetButtonDown("Action") && canvasOpen)

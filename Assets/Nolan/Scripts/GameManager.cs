@@ -52,6 +52,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject arrow;
 
+    public AudioSource yawn;
+    public AudioSource roundSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -146,6 +150,8 @@ public class GameManager : MonoBehaviour
                 End();
             }
             currentDay++;
+            Debug.Log(currentDay);
+            yawn.Play();
             currentRound = 0;
         }
         #endregion
@@ -153,6 +159,7 @@ public class GameManager : MonoBehaviour
         else
         {
             currentRound++;
+            roundSound.Play();
             for (int i = 0; i < eachObject.Length; i++)
             {
                 eachObject[i].GetComponent<Object>().UpdatePrice(currentRound);
