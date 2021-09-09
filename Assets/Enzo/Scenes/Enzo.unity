@@ -3136,6 +3136,8 @@ GameObject:
   - component: {fileID: 1366577083}
   - component: {fileID: 1366577082}
   - component: {fileID: 1366577081}
+  - component: {fileID: 1366577085}
+  - component: {fileID: 1366577084}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -3202,6 +3204,37 @@ RectTransform:
   m_AnchoredPosition: {x: -0.78289795, y: 3.7783813}
   m_SizeDelta: {x: 49.4949, y: 43.5039}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1366577084
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366577080}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4839895da77ae9f469626281350b1c93, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &1366577085
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366577080}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1418800673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,6 +4023,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1838681969}
     m_Modifications:
+    - target: {fileID: 2754404615464805062, guid: ee426e90972ffd04581ad58440b43a2e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cb6f051ee545c9440b6a8c7b48c87167, type: 2}
     - target: {fileID: 2754404615464805065, guid: ee426e90972ffd04581ad58440b43a2e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4077,6 +4114,10 @@ PrefabInstance:
     - target: {fileID: 2754404615464805066, guid: ee426e90972ffd04581ad58440b43a2e, type: 3}
       propertyPath: m_Name
       value: Image
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754404615464805066, guid: ee426e90972ffd04581ad58440b43a2e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee426e90972ffd04581ad58440b43a2e, type: 3}
@@ -4425,6 +4466,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fondNoir: {fileID: 1366577080}
   pass: 32
+  FadeText: {fileID: 1366577084}
+  verif: 0
 --- !u!1 &1879038114
 GameObject:
   m_ObjectHideFlags: 0
