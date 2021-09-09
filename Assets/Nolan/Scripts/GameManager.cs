@@ -32,23 +32,28 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI priceObj;
     private PlayerController player;
 
+    [Header("Deroulement partie")]
+    public int roundToEnd;
+    private int currentRound=0;
+    public int dayEnd;
+    public int currentDay = 0;
+    public GameObject[] eachObject;
+    private Object saveObj;
+    public GameObject[] eachObjectRound2;
+    public GameObject[] eachObjectRound3;
+    public GameObject parentObject;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OpenCanvas(Object obj)
     {
         objectToShow.gameObject.SetActive(true);
         imageObj.sprite = obj.image;
-        nameObj.text = obj.name;
+        nameObj.text = obj._name;
         if (player.levelKnowledge >= 2 && obj.maxLvlKnowledge==2)
         {
             descObj.text = obj.descriptionlvl3;
@@ -62,11 +67,68 @@ public class GameManager : MonoBehaviour
             descObj.text = obj.descriptionlvl1;
         }
 
-        priceObj.text = obj.price;
+        priceObj.text = obj.price.ToString();
+        saveObj = obj;
     }
 
     public void CloseCanvas()
     {
         objectToShow.gameObject.SetActive(false);
+        saveObj = null;
+
+    }
+
+    public void passRoundOrDay()
+    {
+        if(currentRound == roundToEnd-1)
+        {
+            if (currentDay == 0)
+            {
+                for (int i = 0; i < eachObject.Length; i++)
+                {
+                    Instantiate(eachObjectRound2[i].gameObject);
+                    eachObjectRound2[i].transform.position = eachObject[i].transform.position;
+                    eachObject[i].gameObject.SetActive(false);
+                    eachObject[i] = eachObjectRound2[i].gameObject;
+                }
+            }
+            else if (currentDay == 1)
+            {
+                for (int i = 0; i < eachObject.Length; i++)
+                {
+                    eachObject[i] = eachObjectRound3[i].gameObject;
+                }
+            }
+            else
+            {
+                End();
+            }
+            currentDay++;
+            currentRound = 0;
+        }
+        else
+        {
+            currentRound++;
+            for (int i = 0; i < eachObject.Length; i++)
+            {
+                eachObject[i].GetComponent<Object>().UpdatePrice(currentRound);
+            }
+        }
+    }
+
+    public void addMise(int money)
+    {
+        saveObj.mise = money;
+        saveObj.playerProperty = true;
+    }
+    public void cancelMise()
+    {
+        saveObj.mise = 0;
+        saveObj.playerProperty = false;
+    }
+
+    private void End()
+    {
+
     }
 }

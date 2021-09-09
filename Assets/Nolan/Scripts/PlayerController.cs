@@ -19,15 +19,17 @@ public class PlayerController : MonoBehaviour
 
     public int argent = 1000;
     public int miseTotale;
-    public Text miseTotaleT;
-    public Text argentT;
+    public TextMeshProUGUI miseTotaleT;
+    public TextMeshProUGUI argentT;
 
     public Canvas interact;
     private bool canvasOpen;
 
     public TextMeshProUGUI levelText;
 
-    MiseArgent checkMoney;
+    public MiseArgent checkMoney;
+
+    private bool onCouch;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +37,11 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         gameManager = GameManager.Instance;
         argentT.text = "" + argent;
-        checkMoney = FindObjectOfType<MiseArgent>();
-
+        if (!checkMoney)
+        {
+            checkMoney = FindObjectOfType<MiseArgent>();
+        }
+        miseTotaleT.text = "0";
     }
 
     // Update is called once per frame
@@ -69,6 +74,11 @@ public class PlayerController : MonoBehaviour
         {
             UpgradeLevelKnowledge();
         }
+
+        if(onCouch && Input.GetKeyDown(KeyCode.E))
+        {
+            gameManager.passRoundOrDay();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -81,6 +91,12 @@ public class PlayerController : MonoBehaviour
             interact.transform.position = collision.transform.position;
             interact.gameObject.SetActive(true);
         }
+        if (collision.tag == "Couch")
+        {
+            interact.transform.position = collision.transform.position;
+            interact.gameObject.SetActive(true);
+            onCouch = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -91,6 +107,11 @@ public class PlayerController : MonoBehaviour
             objCollision = false;
             gameManager.CloseCanvas();
             interact.gameObject.SetActive(false);
+        }
+        if (collision.tag == "Couch")
+        {
+            interact.gameObject.SetActive(false);
+            onCouch = false;
         }
     }
 

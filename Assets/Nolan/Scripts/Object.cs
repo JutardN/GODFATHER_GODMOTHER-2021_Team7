@@ -4,11 +4,33 @@ using UnityEngine;
 
 public class Object : MonoBehaviour
 {
-    public string name;
+    public string _name;
     public Sprite image;
     public int maxLvlKnowledge;
     public string descriptionlvl1;
     public string descriptionlvl2;
     public string descriptionlvl3;
-    public string price;
+    public int defaultPrice;
+    //[HideInInspector]
+    public int price;
+
+    public int[] priceEachRound;
+    [HideInInspector]
+    public int mise;
+    [HideInInspector]
+    public bool playerProperty = false;
+
+    private void Start()
+    {
+        price = priceEachRound[0];
+    }
+
+    public void UpdatePrice(int i)
+    {
+        if(mise < priceEachRound[i])
+        {
+            price = priceEachRound[i];
+            playerProperty = false;
+        }
+    }
 }
