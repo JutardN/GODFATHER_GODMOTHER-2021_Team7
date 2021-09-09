@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Rewired;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,6 +36,14 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer render;
 
+    private int playerID = 0;
+    private Player player;
+
+    private void Awake()
+    {
+        player =ReInput.players.GetPlayer(playerID);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,10 +62,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        hz = Input.GetAxis("Horizontal");
+        hz = player.GetAxis("Movement");
         rb.velocity = new Vector3(hz * speed, 0, 0);
 
-        if (Input.GetButton("Horizontal"))
+        if (player.GetAxis("Movement")!=0)
         {
             if (hz > 0)
             {
@@ -69,7 +78,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("Walking", true);
             }
         }
-        else if(!Input.GetButton("Horizontal"))
+        else /*if(!player.GetButton("Movement"))*/
         {
             anim.SetBool("Walking", false);
         }
@@ -79,14 +88,14 @@ public class PlayerController : MonoBehaviour
     {
         if (objCollision)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !canvasOpen)
+            if (player.GetButtonDown("Action") && !canvasOpen)
             {
                 gameManager.OpenCanvas(saveObj);
                 canvasOpen = true;
                 interact.gameObject.SetActive(false);
 
             }
-            else if(Input.GetKeyDown(KeyCode.E) && canvasOpen)
+            else if(player.GetButtonDown("Action") && canvasOpen)
             {
                 interact.gameObject.SetActive(true);
                 gameManager.CloseCanvas();
@@ -98,7 +107,7 @@ public class PlayerController : MonoBehaviour
             UpgradeLevelKnowledge();
         }
 
-        if(onCouch && Input.GetKeyDown(KeyCode.E))
+        if(onCouch && player.GetButtonDown("Action"))
         {
             gameManager.passRoundOrDay();
         }
