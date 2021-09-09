@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
                 canvasOpen = true;
                 interact.gameObject.SetActive(false);
 
-                checkMoney.ActiveMoney();
             }
             else if(Input.GetKeyDown(KeyCode.E) && canvasOpen)
             {

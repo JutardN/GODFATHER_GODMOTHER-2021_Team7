@@ -30,18 +30,25 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI nameObj;
     public TextMeshProUGUI descObj;
     public TextMeshProUGUI priceObj;
-    private PlayerController player;
+
+    [HideInInspector]
+    public PlayerController player;
 
     [Header("Deroulement partie")]
     public int roundToEnd;
-    private int currentRound=0;
+    public int currentRound=0;
     public int dayEnd;
     public int currentDay = 0;
     public GameObject[] eachObject;
-    private Object saveObj;
+
+    [HideInInspector]
+    public Object saveObj;
+
     public GameObject[] eachObjectRound2;
     public GameObject[] eachObjectRound3;
     public GameObject parentObject;
+
+    public MiseArgent scriptMise;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +76,13 @@ public class GameManager : MonoBehaviour
 
         priceObj.text = obj.price.ToString();
         saveObj = obj;
+
+
+        scriptMise.moneyValue = saveObj.price;
+        scriptMise.prixDepart.text = "" + saveObj.defaultPrice.ToString();
+
+        scriptMise.miseActuelle.text = "" + saveObj.price.ToString();
+        scriptMise.moneySpend.text = "" + saveObj.price.ToString();
     }
 
     public void CloseCanvas()
@@ -116,16 +130,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void addMise(int money)
-    {
-        saveObj.mise = money;
-        saveObj.playerProperty = true;
-    }
-    public void cancelMise()
-    {
-        saveObj.mise = 0;
-        saveObj.playerProperty = false;
-    }
 
     private void End()
     {

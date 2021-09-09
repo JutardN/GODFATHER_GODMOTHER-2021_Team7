@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MiseArgent : MonoBehaviour
 {
+    public GameManager manager;
     public Text moneySpend;
     public Text prixDepart;
     public Text miseActuelle;
@@ -12,124 +13,92 @@ public class MiseArgent : MonoBehaviour
     public int prixDepartMoney;
     public int miseActuelleMoney;
     public int coeffMoney;
-    int maMiseMoney;
-    int maMoneyBack;
 
-
-    int moneyValue;
-
-    bool iSpendMoney = false;
-    bool iRecoverMoney = false;
-    bool iValid = false;
-    bool iCancel = false;
+    [HideInInspector]
+    public int moneyValue;
 
     PlayerController controller;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = FindObjectOfType<PlayerController>();
-        prixDepart.text = "" + prixDepartMoney;
-        moneyValue = miseActuelleMoney;
-        miseActuelle.text = "" + miseActuelleMoney;
-        moneySpend.text = "" + miseActuelleMoney;
- 
+        manager = GameManager.Instance;
+        controller = manager.player;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(iSpendMoney == true && iCancel != true)
-        {
-            moneyValue += coeffMoney;
-            moneySpend.text = "" + moneyValue;
-            iSpendMoney = false;
-            maMiseMoney = moneyValue;
-        }
-        else if (iRecoverMoney == true && moneyValue > miseActuelleMoney && iCancel != true)
-        {
-            moneyValue -= coeffMoney;
-            moneySpend.text = "" + moneyValue;
-            iRecoverMoney = false;
-            maMiseMoney = moneyValue;
 
-        }
-
-        if(iValid == true && iCancel != true)
-        {
-            if (maMiseMoney < miseActuelleMoney)
-            {
-                miseActuelleMoney = moneyValue;
-                moneySpend.text = "" + moneyValue;
-                miseActuelle.text = "" + moneyValue;
-
-                controller.argent += moneyValue;
-                controller.miseTotale -= moneyValue;
-                controller.argentT.text = "" + controller.argent;
-                controller.miseTotaleT.text = "" + controller.miseTotale;
-
-                iValid = false;
-                iCancel = true;
-            }
-            else if(maMiseMoney > miseActuelleMoney)
-            {
-                miseActuelleMoney = moneyValue;
-                moneySpend.text = "" + moneyValue;
-                miseActuelle.text = "" + moneyValue;
-
-                controller.argent -= moneyValue;
-                controller.miseTotale += moneyValue;
-                controller.argentT.text = "" + controller.argent;
-                controller.miseTotaleT.text = "" + controller.miseTotale;
-
-                iValid = false;
-                iCancel = true;
-            }
-                
-        }
     }
 
     public void addMoney()
     {
-        iSpendMoney = true;
-        iRecoverMoney = false;
+        if (moneyValue + coeffMoney <= controller.argent + manager.saveObj.misePlayer)
+        {
+            moneyValue += coeffMoney;
+            moneySpend.text = "" + moneyValue;
+
+        }
+
     }
     public void subMoney()
     {
-        iSpendMoney = false;
-        iRecoverMoney = true;
-    }
-
-    public void ValiderMoney()
-    {
-        if (miseActuelleMoney != moneyValue)
+        if (moneyValue - coeffMoney >= manager.saveObj.price)
         {
-            iValid = true;
+            moneyValue -= coeffMoney;
+            moneySpend.text = "" + moneyValue;
+
         }
 
-    } 
+    }
+#region final
+    public void ValiderMoney()
+    {
+        if (miseActuelleMoney != moneyValue && controller.argent >= moneyValue - manager.saveObj.misePlayer)
+        {
+            miseActuelleMoney = moneyValue;
+
+            moneySpend.text = "" + moneyValue;
+            miseActuelle.text = "" + moneyValue;
+
+            controller.argent -= moneyValue - manager.saveObj.misePlayer;
+            controller.miseTotale = manager.saveObj.misePlayer + (moneyValue - manager.saveObj.misePlayer);
+
+            controller.argentT.text = "" + controller.argent;
+
+            manager.saveObj.playerProperty = true;
+            manager.saveObj.price = moneyValue;
+            manager.saveObj.misePlayer = moneyValue;
+
+            controller.miseTotaleT.text = "" + (manager.eachObject[0].GetComponent<Object>().misePlayer + manager.eachObject[1].GetComponent<Object>().misePlayer + manager.eachObject[2].GetComponent<Object>().misePlayer).ToString();
+
+        }
+    }
 
     public void AnnulerMoney()
     {
 
-        if (moneyValue > prixDepartMoney && iCancel == true)
+        if (moneyValue > prixDepartMoney)
         {
-            controller.miseTotale -= moneyValue;
-            controller.argent += moneyValue;
+            controller.miseTotale -= manager.saveObj.misePlayer;
+            controller.argent += manager.saveObj.misePlayer;
 
-            miseActuelleMoney = prixDepartMoney;
+            manager.saveObj.misePlayer = 0;
+
+            miseActuelleMoney = manager.saveObj.priceEachRound[manager.currentRound];
             moneyValue = miseActuelleMoney;
 
             moneySpend.text = "" + moneyValue;
             miseActuelle.text = "" + miseActuelleMoney;
+
             controller.argentT.text = "" + controller.argent;
-            controller.miseTotaleT.text = "" + controller.miseTotale;
-            iCancel = false;
+            controller.miseTotaleT.text = "" + (manager.eachObject[0].GetComponent<Object>().misePlayer + manager.eachObject[1].GetComponent<Object>().misePlayer + manager.eachObject[2].GetComponent<Object>().misePlayer).ToString();
+
+            manager.saveObj.playerProperty = false;
+            manager.saveObj.price = moneyValue;
         }
-    
     }
-    public void ActiveMoney()
-    {
-        moneyValue = miseActuelleMoney;
-    }
+#endregion
 }

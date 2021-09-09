@@ -15,12 +15,14 @@ public class Object : MonoBehaviour
     public int price;
 
     public int[] priceEachRound;
-    [HideInInspector]
-    public int mise;
+
     [HideInInspector]
     public bool playerProperty = false;
 
     public int sellingPrice;
+
+    [HideInInspector]
+    public int misePlayer;
 
     private void Start()
     {
@@ -29,7 +31,7 @@ public class Object : MonoBehaviour
 
     public void UpdatePrice(int i)
     {
-        if(mise < priceEachRound[i])
+        if(misePlayer < priceEachRound[i])
         {
             price = priceEachRound[i];
             playerProperty = false;
