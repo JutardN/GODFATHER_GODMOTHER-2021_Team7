@@ -101,10 +101,11 @@ MonoBehaviour:
   descriptionlvl2: Juste un caillou
   descriptionlvl3: 
   defaultPrice: 50
-  price: 690
+  price: 0
   priceEachRound: 460000006400000022010000
   mise: 0
   playerProperty: 0
+  sellingPrice: 0
 --- !u!1 &2882350879156332336
 GameObject:
   m_ObjectHideFlags: 0

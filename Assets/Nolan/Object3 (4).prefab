@@ -101,10 +101,11 @@ MonoBehaviour:
   descriptionlvl2: Etoile
   descriptionlvl3: Etoile ancienne de 1000 ans
   defaultPrice: 500
-  price: 290
+  price: 0
   priceEachRound: dc050000f00a0000760c0000
   mise: 0
   playerProperty: 0
+  sellingPrice: 0
 --- !u!1 &4951445889182165278
 GameObject:
   m_ObjectHideFlags: 0

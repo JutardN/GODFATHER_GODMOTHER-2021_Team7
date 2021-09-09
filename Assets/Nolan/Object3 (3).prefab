@@ -101,10 +101,11 @@ MonoBehaviour:
   descriptionlvl2: 
   descriptionlvl3: 
   defaultPrice: 200
-  price: 1050
+  price: 0
   priceEachRound: f4010000260200007a030000
   mise: 0
   playerProperty: 0
+  sellingPrice: 0
 --- !u!1 &7394133373179000080
 GameObject:
   m_ObjectHideFlags: 0
