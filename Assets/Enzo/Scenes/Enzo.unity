@@ -266,7 +266,7 @@ MonoBehaviour:
   price: 150
   priceEachRound: 2c010000f4010000b2020000
   playerProperty: 0
-  sellingPrice: 0
+  sellingPrice: 3000
   misePlayer: 0
 --- !u!50 &19929853
 Rigidbody2D:
@@ -1667,7 +1667,7 @@ MonoBehaviour:
   price: 100
   priceEachRound: 96000000c800000022010000
   playerProperty: 0
-  sellingPrice: 0
+  sellingPrice: 1200
   misePlayer: 0
 --- !u!50 &550000909
 Rigidbody2D:

@@ -106,7 +106,7 @@ MonoBehaviour:
   price: 3190
   priceEachRound: dc050000f00a0000760c0000
   playerProperty: 0
-  sellingPrice: 0
+  sellingPrice: 8000
   misePlayer: 0
 --- !u!1 &4951445889182165278
 GameObject:

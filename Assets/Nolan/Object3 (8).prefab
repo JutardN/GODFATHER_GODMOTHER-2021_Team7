@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4963927826251332984}
   - component: {fileID: 5691973299661390138}
   m_Layer: 0
-  m_Name: Object3 (5)
+  m_Name: Object3 (8)
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,18 +94,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Picasso painting
+  _name: Japanses katana
   image: {fileID: -9095717837082945937, guid: 3a95550633c17c34f840bccf069dc9bc, type: 3}
   maxLvlKnowledge: 1
-  descriptionlvl1: 'Ambroise Vollard''s portrait, signed Picasso himself, found in
-    the ruins of an abandonned castle. '
+  descriptionlvl1: A wakizashi, a short, antique japanese blade, forged during the
+    Edo Period.
   descriptionlvl2: Juste un caillou
   descriptionlvl3: 
-  defaultPrice: 50
+  defaultPrice: 500
   price: 290
-  priceEachRound: 460000006400000022010000
+  priceEachRound: 800c0000f41a00002a210000
   playerProperty: 0
-  sellingPrice: 20
+  sellingPrice: 7500
   misePlayer: 0
 --- !u!1 &2882350879156332336
 GameObject:
