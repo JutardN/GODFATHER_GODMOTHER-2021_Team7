@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
 
     public MiseArgent scriptMise;
 
+    public GameObject arrow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,13 +85,18 @@ public class GameManager : MonoBehaviour
 
         scriptMise.miseActuelle.text = "" + saveObj.price.ToString();
         scriptMise.moneySpend.text = "" + saveObj.price.ToString();
+
+        if (obj.playerProperty)
+        {
+            arrow.SetActive(true);
+        }
     }
 
     public void CloseCanvas()
     {
         objectToShow.gameObject.SetActive(false);
         saveObj = null;
-
+        arrow.SetActive(false);
     }
 
     public void passRoundOrDay()

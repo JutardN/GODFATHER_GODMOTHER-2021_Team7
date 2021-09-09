@@ -102,10 +102,10 @@ public class PlayerController : MonoBehaviour
                 canvasOpen = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            UpgradeLevelKnowledge();
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    UpgradeLevelKnowledge();
+        //}
 
         if(onCouch && player.GetButtonDown("Action"))
         {

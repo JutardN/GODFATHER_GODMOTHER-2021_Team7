@@ -73,7 +73,8 @@ public class MiseArgent : MonoBehaviour
             manager.saveObj.misePlayer = moneyValue;
 
             controller.miseTotaleT.text = "" + (manager.eachObject[0].GetComponent<Object>().misePlayer + manager.eachObject[1].GetComponent<Object>().misePlayer + manager.eachObject[2].GetComponent<Object>().misePlayer).ToString();
-
+            manager.arrow.SetActive(true);
+            manager.CloseCanvas();
         }
     }
 
@@ -98,6 +99,10 @@ public class MiseArgent : MonoBehaviour
 
             manager.saveObj.playerProperty = false;
             manager.saveObj.price = moneyValue;
+
+            manager.arrow.SetActive(false);
+            manager.CloseCanvas();
+
         }
     }
 #endregion
