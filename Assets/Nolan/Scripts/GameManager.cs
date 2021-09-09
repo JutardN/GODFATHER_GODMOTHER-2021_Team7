@@ -94,22 +94,43 @@ public class GameManager : MonoBehaviour
 
     public void passRoundOrDay()
     {
-        if(currentRound == roundToEnd-1)
+        #region Day
+        if (currentRound == roundToEnd-1)
         {
+            for(int i = 0; i < eachObject.Length; i++)
+            {
+                if (eachObject[i].GetComponent<Object>().playerProperty)
+                {
+                    player.argent += eachObject[i].GetComponent<Object>().sellingPrice;
+                    player.argent += eachObject[i].GetComponent<Object>().misePlayer = 0;
+                }
+                else
+                {
+                    player.argent += eachObject[i].GetComponent<Object>().misePlayer;
+                    player.argent += eachObject[i].GetComponent<Object>().misePlayer = 0;
+                }
+            }
+            player.miseTotaleT.text = "0";
+            player.argentT.text = player.argent.ToString();
+
             if (currentDay == 0)
             {
                 for (int i = 0; i < eachObject.Length; i++)
                 {
-                    Instantiate(eachObjectRound2[i].gameObject);
-                    eachObjectRound2[i].transform.position = eachObject[i].transform.position;
-                    eachObject[i].gameObject.SetActive(false);
-                    eachObject[i] = eachObjectRound2[i].gameObject;
+                    var save = eachObject[i].gameObject;
+                    eachObject[i] = Instantiate(eachObjectRound2[i].gameObject);
+                    eachObject[i].gameObject.transform.position = save.transform.position;
+                    save.gameObject.SetActive(false);
+                    save = null;
                 }
             }
             else if (currentDay == 1)
             {
                 for (int i = 0; i < eachObject.Length; i++)
                 {
+                    Instantiate(eachObjectRound3[i].gameObject);
+                    eachObjectRound3[i].transform.position = eachObject[i].transform.position;
+                    eachObject[i].gameObject.SetActive(false);
                     eachObject[i] = eachObjectRound3[i].gameObject;
                 }
             }
@@ -120,6 +141,8 @@ public class GameManager : MonoBehaviour
             currentDay++;
             currentRound = 0;
         }
+        #endregion
+        #region Round
         else
         {
             currentRound++;
@@ -128,6 +151,7 @@ public class GameManager : MonoBehaviour
                 eachObject[i].GetComponent<Object>().UpdatePrice(currentRound);
             }
         }
+        #endregion
     }
 
 
