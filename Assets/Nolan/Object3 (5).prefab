@@ -96,14 +96,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Trou gris
   image: {fileID: -9095717837082945937, guid: 3a95550633c17c34f840bccf069dc9bc, type: 3}
-  maxLvlKnowledge: 0
-  descriptionlvl1: "Pillule g\xE9ante"
-  descriptionlvl2: 
+  maxLvlKnowledge: 1
+  descriptionlvl1: Boule grise
+  descriptionlvl2: Juste un caillou
   descriptionlvl3: 
-  defaultPrice: 150
+  defaultPrice: 50
   price: 690
-  priceEachRound: 2c010000f4010000b2020000
+  priceEachRound: 460000006400000022010000
   mise: 0
+  playerProperty: 0
 --- !u!1 &2882350879156332336
 GameObject:
   m_ObjectHideFlags: 0

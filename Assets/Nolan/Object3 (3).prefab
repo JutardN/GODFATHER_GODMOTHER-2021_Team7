@@ -96,14 +96,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "Carr\xE9"
   image: {fileID: 3625043607559282579, guid: ca56ab08d7f7b77418212b63d73be6dd, type: 3}
-  maxLvlKnowledge: 1
-  descriptionlvl1: Diamant bleu
-  descriptionlvl2: "Diamant pure \xE0 99%"
+  maxLvlKnowledge: 0
+  descriptionlvl1: Rubiks cube seulement bleu
+  descriptionlvl2: 
   descriptionlvl3: 
-  defaultPrice: 250
+  defaultPrice: 200
   price: 1050
-  priceEachRound: f4010000840300001a040000
+  priceEachRound: f4010000260200007a030000
   mise: 0
+  playerProperty: 0
 --- !u!1 &7394133373179000080
 GameObject:
   m_ObjectHideFlags: 0

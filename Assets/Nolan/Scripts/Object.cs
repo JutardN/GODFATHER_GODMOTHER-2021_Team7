@@ -20,6 +20,8 @@ public class Object : MonoBehaviour
     [HideInInspector]
     public bool playerProperty = false;
 
+    public int sellingPrice;
+
     private void Start()
     {
         price = priceEachRound[0];
