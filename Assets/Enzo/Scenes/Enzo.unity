@@ -255,18 +255,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Capsule
-  image: {fileID: -9095717837082945937, guid: 3a95550633c17c34f840bccf069dc9bc, type: 3}
+  _name: Greek antique vase
+  image: {fileID: 21300000, guid: 31556dacc1a73c24fb680ed6b0c40ef2, type: 3}
   maxLvlKnowledge: 0
-  descriptionlvl1: "Pillule g\xE9ante"
+  descriptionlvl1: 'This vase was made during Greece Antiquity. The legendary hero
+    Hercules can be seen in the middle of one of his twelve labours. '
   descriptionlvl2: 
   descriptionlvl3: 
   defaultPrice: 150
   price: 150
   priceEachRound: 2c010000f4010000b2020000
-  mise: 0
   playerProperty: 0
   sellingPrice: 0
+  misePlayer: 0
 --- !u!50 &19929853
 Rigidbody2D:
   serializedVersion: 4
@@ -1654,18 +1655,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Rond
-  image: {fileID: -2413806693520163455, guid: 6227865c3ef884c449a8b734bdd29b89, type: 3}
+  _name: Golden neckplace
+  image: {fileID: 21300000, guid: 00062482a3a3b1f42bf78fc1b305d975, type: 3}
   maxLvlKnowledge: 2
-  descriptionlvl1: Rond jaune
+  descriptionlvl1: A shiny and golden necklace, with a jewel in its center. It seems
+    extremely lightweighted, and was found in the ruins of an old village destroyed
+    during the Second World War.
   descriptionlvl2: "Etrange cr\xE9ature"
   descriptionlvl3: Pac man entier
   defaultPrice: 100
   price: 100
   priceEachRound: 96000000c800000022010000
-  mise: 0
   playerProperty: 0
   sellingPrice: 0
+  misePlayer: 0
 --- !u!50 &550000909
 Rigidbody2D:
   serializedVersion: 4
@@ -1894,18 +1897,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Diamant
+  _name: Ancient papyrus scroll
   image: {fileID: 3625043607559282579, guid: ca56ab08d7f7b77418212b63d73be6dd, type: 3}
   maxLvlKnowledge: 1
-  descriptionlvl1: Diamant bleu
+  descriptionlvl1: An old papyrus dating from around 2000 years ago, found in Egypt.
+    Hieroglyphs are depicted on it.
   descriptionlvl2: "Diamant pure \xE0 99%"
   descriptionlvl3: 
   defaultPrice: 250
   price: 250
   priceEachRound: f4010000840300001a040000
-  mise: 0
   playerProperty: 0
   sellingPrice: 0
+  misePlayer: 0
 --- !u!50 &619886551
 Rigidbody2D:
   serializedVersion: 4
@@ -2726,7 +2730,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -9095717837082945937, guid: 3a95550633c17c34f840bccf069dc9bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31556dacc1a73c24fb680ed6b0c40ef2, type: 3}
   m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3032,19 +3036,23 @@ MonoBehaviour:
   nameObj: {fileID: 34368087}
   descObj: {fileID: 330608018}
   priceObj: {fileID: 615027306}
+  player: {fileID: 0}
   roundToEnd: 3
+  currentRound: 0
   dayEnd: 3
   currentDay: 0
   eachObject:
   - {fileID: 550000907}
   - {fileID: 19929851}
   - {fileID: 619886549}
+  saveObj: {fileID: 0}
   eachObjectRound2:
   - {fileID: 1748532253738407368, guid: 162a2f0c16744064aaa809581268de9f, type: 3}
   - {fileID: 2729964606613647741, guid: 82836a75413ad2f4b8758843919a68a1, type: 3}
   - {fileID: 665004118039182108, guid: 8b724ccb2d7de6e49adac4ca70b11aa7, type: 3}
   eachObjectRound3: []
   parentObject: {fileID: 1950391327}
+  scriptMise: {fileID: 1961167365}
 --- !u!4 &1185684681
 Transform:
   m_ObjectHideFlags: 0
@@ -3273,7 +3281,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00062482a3a3b1f42bf78fc1b305d975, type: 3}
   m_Color: {r: 0.8490566, g: 0.7996171, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4077,6 +4085,10 @@ PrefabInstance:
     - target: {fileID: 2754404615464805066, guid: ee426e90972ffd04581ad58440b43a2e, type: 3}
       propertyPath: m_Name
       value: Image
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754404615464805066, guid: ee426e90972ffd04581ad58440b43a2e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee426e90972ffd04581ad58440b43a2e, type: 3}

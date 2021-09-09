@@ -94,18 +94,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Trou gris
+  _name: Picasso painting
   image: {fileID: -9095717837082945937, guid: 3a95550633c17c34f840bccf069dc9bc, type: 3}
   maxLvlKnowledge: 1
-  descriptionlvl1: Boule grise
+  descriptionlvl1: 'Ambroise Vollard''s portrait, signed Picasso himself, found in
+    the ruins of an abandonned castle. '
   descriptionlvl2: Juste un caillou
   descriptionlvl3: 
   defaultPrice: 50
-  price: 0
+  price: 290
   priceEachRound: 460000006400000022010000
-  mise: 0
   playerProperty: 0
   sellingPrice: 0
+  misePlayer: 0
 --- !u!1 &2882350879156332336
 GameObject:
   m_ObjectHideFlags: 0

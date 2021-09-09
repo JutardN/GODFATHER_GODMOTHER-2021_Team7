@@ -94,18 +94,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "Carr\xE9"
+  _name: Japanese vase
   image: {fileID: 3625043607559282579, guid: ca56ab08d7f7b77418212b63d73be6dd, type: 3}
   maxLvlKnowledge: 0
-  descriptionlvl1: Rubiks cube seulement bleu
+  descriptionlvl1: Imari porcelain vase, made in Japan circa 1870.
   descriptionlvl2: 
   descriptionlvl3: 
   defaultPrice: 200
-  price: 0
+  price: 890
   priceEachRound: f4010000260200007a030000
-  mise: 0
   playerProperty: 0
   sellingPrice: 0
+  misePlayer: 0
 --- !u!1 &7394133373179000080
 GameObject:
   m_ObjectHideFlags: 0

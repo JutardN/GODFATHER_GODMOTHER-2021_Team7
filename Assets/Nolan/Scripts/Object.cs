@@ -11,7 +11,7 @@ public class Object : MonoBehaviour
     public string descriptionlvl2;
     public string descriptionlvl3;
     public int defaultPrice;
-    //[HideInInspector]
+    [HideInInspector]
     public int price;
 
     public int[] priceEachRound;

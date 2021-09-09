@@ -94,18 +94,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a4618a7b10ea94898387bdcaf503f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Etoile
+  _name: Ancient painting
   image: {fileID: -2413806693520163455, guid: 6227865c3ef884c449a8b734bdd29b89, type: 3}
   maxLvlKnowledge: 2
-  descriptionlvl1: Truc jaune
+  descriptionlvl1: 'Sulawesi rock painting consists in the shape of a hand made from
+    stencils dating from at least 37,900 BC. It is the second oldest painting known
+    of. '
   descriptionlvl2: Etoile
   descriptionlvl3: Etoile ancienne de 1000 ans
   defaultPrice: 500
-  price: 0
+  price: 3190
   priceEachRound: dc050000f00a0000760c0000
-  mise: 0
   playerProperty: 0
   sellingPrice: 0
+  misePlayer: 0
 --- !u!1 &4951445889182165278
 GameObject:
   m_ObjectHideFlags: 0
