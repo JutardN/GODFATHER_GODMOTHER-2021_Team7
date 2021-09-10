@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51b096bd795bcc48b377a1102c0cf3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneToLoad_Play: Enzo
+  SceneToLoad_Play: Final scene
   transition: {fileID: 788181081}
 --- !u!1 &1684549429
 GameObject:
