@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
     public AudioSource yawn;
     public AudioSource roundSound;
 
+    public Animator fade;
+    public GameObject fondTransi;
+    public GameObject transiFade;
+    public float timeTransi = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -164,13 +168,26 @@ public class GameManager : MonoBehaviour
             Debug.Log(currentDay);
             yawn.Play();
             currentRound = 0;
+
+            transiFade.SetActive(true);
+            fade.SetTrigger("Start");
+            StartCoroutine(Fade());
+            player.stopPlayer = true;
         }
         #endregion
         #region Round
         else
         {
             currentRound++;
+
             roundSound.Play();
+
+            
+            transiFade.SetActive(true);
+            fade.SetTrigger("Start");
+            StartCoroutine(Fade());
+            player.stopPlayer = true;
+
             for (int i = 0; i < eachObject.Length; i++)
             {
                 eachObject[i].GetComponent<Object>().UpdatePrice(currentRound);
@@ -182,6 +199,30 @@ public class GameManager : MonoBehaviour
 
     private void End()
     {
+
+    }
+
+    IEnumerator Fade()
+    {
+        fade.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
+
+        transiFade.SetActive(false);
+        fondTransi.SetActive(true);
+
+        fade.ResetTrigger("Start");
+        
+
+        yield return new WaitForSeconds(timeTransi);
+        fondTransi.SetActive(false);
+        transiFade.SetActive(true);
+        fade.SetTrigger("End");
+        fondTransi.SetActive(false);
+
+        yield return new WaitForSeconds(1);
+        transiFade.SetActive(false);
+        fade.ResetTrigger("End");
+        player.stopPlayer = false;
 
     }
 }

@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         //    UpgradeLevelKnowledge();
         //}
 
-        if(onCouch && playerController.GetButtonDown("Action"))
+        if(onCouch && playerController.GetButtonDown("Action") && !stopPlayer)
         {
             gameManager.passRoundOrDay();
         }
