@@ -82,7 +82,6 @@ public class MiseArgent : MonoBehaviour
             moneyValue += coeffMoney;
 			moneySpend.text = "" + moneyValue;
             Add.Play();
-
         }
 
     }
@@ -93,14 +92,13 @@ public class MiseArgent : MonoBehaviour
             moneyValue -= coeffMoney;
             moneySpend.text = "" + moneyValue;
             Remove.Play();
-
         }
 
     }
 #region final
     public void ValiderMoney()
     {
-        if (miseActuelleMoney != moneyValue && controller.argent >= moneyValue - manager.saveObj.misePlayer)
+        if (manager.saveObj.price != moneyValue && controller.argent >= moneyValue - manager.saveObj.misePlayer)
         {
             miseActuelleMoney = moneyValue;
 
@@ -118,6 +116,10 @@ public class MiseArgent : MonoBehaviour
 
             controller.miseTotaleT.text = "" + (manager.eachObject[0].GetComponent<Object>().misePlayer + manager.eachObject[1].GetComponent<Object>().misePlayer + manager.eachObject[2].GetComponent<Object>().misePlayer).ToString();
             manager.arrow.SetActive(true);
+            manager.CloseCanvas();
+        }
+        else
+        {
             manager.CloseCanvas();
         }
     }

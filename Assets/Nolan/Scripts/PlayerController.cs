@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     public int speed;
     private float hz;
-    private Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
     private List<Object> inventory;
     public int levelKnowledge = 0;
 
@@ -24,7 +25,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI argentT;
 
     public Canvas interact;
-    private bool canvasOpen;
+    [HideInInspector]
+    public bool canvasOpen;
 
     public TextMeshProUGUI levelText;
 
@@ -43,6 +45,10 @@ public class PlayerController : MonoBehaviour
     public AudioSource footStep;
     public AudioSource question;
 
+    public bool stopPlayer;
+
+    [HideInInspector]
+    public bool inBet;
 
     private void Awake()
     {
@@ -70,35 +76,38 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        hz = playerController.GetAxis("Movement");
-        rb.velocity = new Vector3(hz * speed, 0, 0);
+        if (!stopPlayer)
+        {
+            hz = playerController.GetAxis("Movement");
+            rb.velocity = new Vector3(hz * speed, 0, 0);
 
-        if (playerController.GetAxis("Movement")!=0)
-        {
-            if (hz > 0)
+            if (playerController.GetAxis("Movement") != 0)
             {
-                render.flipX = false;
-                anim.SetBool("Walking", true);
-                if (!footStep.isPlaying)
+                if (hz > 0)
                 {
-                    footStep.Play();
+                    render.flipX = false;
+                    anim.SetBool("Walking", true);
+                    if (!footStep.isPlaying)
+                    {
+                        footStep.Play();
+                    }
                 }
+                else if (hz < 0)
+                {
+                    render.flipX = true;
+                    anim.SetBool("Walking", true);
+                    if (!footStep.isPlaying)
+                    {
+                        footStep.Play();
+                    }
+                }
+
             }
-            else if (hz < 0)
+            else /*if(!player.GetButton("Movement"))*/
             {
-                render.flipX = true;
-                anim.SetBool("Walking", true);
-                if (!footStep.isPlaying)
-                {
-                    footStep.Play();
-                }
+                anim.SetBool("Walking", false);
+                footStep.Stop();
             }
-            
-        }
-        else /*if(!player.GetButton("Movement"))*/
-        {
-            anim.SetBool("Walking", false);
-            footStep.Stop();
         }
     }
 
@@ -112,14 +121,13 @@ public class PlayerController : MonoBehaviour
                 canvasOpen = true;
                 interact.gameObject.SetActive(false);
                 question.Play();
-
             }
-            else if(playerController.GetButtonDown("Action") && canvasOpen)
-            {
-                interact.gameObject.SetActive(true);
-                gameManager.CloseCanvas();
-                canvasOpen = false;
-            }
+            //else if(playerController.GetButtonDown("Action") && canvasOpen)
+            //{
+            //    interact.gameObject.SetActive(true);
+            //    gameManager.CloseCanvas();
+            //    canvasOpen = false;
+            //}
         }
         //if (Input.GetKeyDown(KeyCode.F))
         //{
@@ -132,10 +140,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         
-        if (collision.tag == "Object")
+        if (collision.tag == "Object" && !inBet)
         {
             saveObj = collision.GetComponent<Object>();
             objCollision = true;

@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     private GameManager manager;
     private Player playerController;
+    private bool pause;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (playerController.GetButton("Pause"))
+        if (playerController.GetButton("Pause") && !pause)
         {
             if (GameIsPaused)
             {
@@ -30,7 +31,15 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+            StartCoroutine("WaitBetweenPause");
         }
+    }
+
+    IEnumerator WaitBetweenPause()
+    {
+        pause = true;
+        yield return new WaitForSecondsRealtime(0.2f);
+        pause = false;
     }
 
     public void Resume()

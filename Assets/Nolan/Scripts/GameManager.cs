@@ -95,15 +95,23 @@ public class GameManager : MonoBehaviour
             arrow.SetActive(true);
         }
         scriptMise.StartCoroutine("WaitBeforeValidate");
+        player.stopPlayer = true;
+        player.rb.velocity = new Vector2(0,0);
+        player.anim.SetBool("Walking", false);
+        player.footStep.Stop();
+        player.inBet = true;
     }
 
     public void CloseCanvas()
     {
         objectToShow.gameObject.SetActive(false);
-        saveObj = null;
+        //saveObj = null;
         arrow.SetActive(false);
         scriptMise.StopAllCoroutines();
         scriptMise.inMenu = false;
+        player.stopPlayer = false;
+        player.inBet = false;
+        player.canvasOpen = false;
     }
 
     public void passRoundOrDay()
