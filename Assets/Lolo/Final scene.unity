@@ -423,7 +423,7 @@ MonoBehaviour:
   price: 150
   priceEachRound: 2c010000f4010000b2020000
   playerProperty: 0
-  sellingPrice: 3000
+  sellingPrice: 5000
   misePlayer: 0
 --- !u!50 &19929853
 Rigidbody2D:
@@ -1333,6 +1333,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &199764497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 199764498}
+  - component: {fileID: 199764500}
+  - component: {fileID: 199764499}
+  m_Layer: 5
+  m_Name: Letter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &199764498
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199764497}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1309542624}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 130}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &199764499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199764497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 649b03a4f65983e40a006248a9299f11, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &199764500
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199764497}
+  m_CullTransparentMesh: 1
 --- !u!1 &201656396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,8 +2467,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dd10733ea09df946ab0c02285d31c27, type: 2}
+  m_sharedMaterial: {fileID: -5545833205867541149, guid: 4dd10733ea09df946ab0c02285d31c27, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3407,7 +3482,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 126.11218, y: 0, z: -71.28076, w: 0}
+  m_margin: {x: 139.94994, y: 0, z: -71.28076, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3438,7 +3513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &465673810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4044,11 +4119,11 @@ MonoBehaviour:
     during the Second World War.
   descriptionlvl2: "Etrange cr\xE9ature"
   descriptionlvl3: Pac man entier
-  defaultPrice: 100
+  defaultPrice: 50
   price: 100
-  priceEachRound: 96000000c800000022010000
+  priceEachRound: 64000000c800000022010000
   playerProperty: 0
-  sellingPrice: 1200
+  sellingPrice: 1500
   misePlayer: 0
 --- !u!50 &550000909
 Rigidbody2D:
@@ -4594,7 +4669,7 @@ MonoBehaviour:
   price: 250
   priceEachRound: f4010000840300001a040000
   playerProperty: 0
-  sellingPrice: 0
+  sellingPrice: 7500
   misePlayer: 0
 --- !u!50 &619886551
 Rigidbody2D:
@@ -6394,8 +6469,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Money : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4dd10733ea09df946ab0c02285d31c27, type: 2}
+  m_sharedMaterial: {fileID: -5545833205867541149, guid: 4dd10733ea09df946ab0c02285d31c27, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6675,7 +6750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420c3984c38af3a4f9eea99dcc07169f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   rb: {fileID: 0}
   levelKnowledge: 0
   argent: 1000
@@ -9882,6 +9957,7 @@ RectTransform:
   - {fileID: 300413038}
   - {fileID: 611642985}
   - {fileID: 656425224}
+  - {fileID: 199764498}
   m_Father: {fileID: 1838681969}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13352,7 +13428,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 126.11218, y: 0, z: -71.28076, w: 0}
+  m_margin: {x: 140.32544, y: 0, z: -71.28076, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

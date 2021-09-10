@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -60,10 +61,17 @@ public class GameManager : MonoBehaviour
     public GameObject transiFade;
     public float timeTransi = 5f;
 
+    private Text textSell;
+    private GameObject image;
+
+    private bool win;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        textSell = fondTransi.transform.GetChild(3).GetComponent<Text>();
+        image = fondTransi.transform.GetChild(1).gameObject;
     }
 
     public void OpenCanvas(Object obj)
@@ -123,17 +131,34 @@ public class GameManager : MonoBehaviour
         #region Day
         if (currentRound == roundToEnd-1)
         {
+            image.SetActive(true);
+            textSell.gameObject.SetActive(true);
+            textSell.text = "";
             for(int i = 0; i < eachObject.Length; i++)
             {
+                //////// Player obtain object /////////////
                 if (eachObject[i].GetComponent<Object>().playerProperty)
                 {
                     player.argent += eachObject[i].GetComponent<Object>().sellingPrice;
                     player.argent += eachObject[i].GetComponent<Object>().misePlayer = 0;
+                    textSell.text += "Congratulations, you managed to get " + eachObject[i].GetComponent<Object>()._name + " and resell it for " + eachObject[i].GetComponent<Object>().sellingPrice + "\n";
                 }
-                else
+                //////  Player didn't obtain object /////////
+                else if (!eachObject[i].GetComponent<Object>().playerProperty && eachObject[i].GetComponent<Object>().misePlayer>0)
                 {
+
                     player.argent += eachObject[i].GetComponent<Object>().misePlayer;
                     player.argent += eachObject[i].GetComponent<Object>().misePlayer = 0;
+                    textSell.text += "Too bad, you didn't manage to get " + eachObject[i].GetComponent<Object>()._name + "\n";
+                }
+                else if(!eachObject[i].GetComponent<Object>().playerProperty && eachObject[i].GetComponent<Object>().misePlayer == 0)
+                {
+
+                    textSell.text += eachObject[i].GetComponent<Object>()._name + " was sold for " + eachObject[i].GetComponent<Object>().sellingPrice + "\n";
+                }
+                if(currentDay == 2 && eachObject[i].GetComponent<Object>()._name == "Gilded box" && eachObject[i].GetComponent<Object>().playerProperty)
+                {
+                    win = true;
                 }
             }
             player.miseTotaleT.text = "0";
@@ -154,30 +179,39 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = 0; i < eachObject.Length; i++)
                 {
-                    Instantiate(eachObjectRound3[i].gameObject);
-                    eachObjectRound3[i].transform.position = eachObject[i].transform.position;
-                    eachObject[i].gameObject.SetActive(false);
-                    eachObject[i] = eachObjectRound3[i].gameObject;
+                    var save = eachObject[i].gameObject;
+                    eachObject[i] = Instantiate(eachObjectRound3[i].gameObject);
+                    eachObject[i].gameObject.transform.position = save.transform.position;
+                    save.gameObject.SetActive(false);
+                    save = null;
                 }
             }
             else
             {
                 End();
             }
-            currentDay++;
-            Debug.Log(currentDay);
-            yawn.Play();
-            currentRound = 0;
+            if (currentDay != 2)
+            {
+                currentDay++;
+                yawn.Play();
+                currentRound = 0;
 
-            transiFade.SetActive(true);
-            fade.SetTrigger("Start");
-            StartCoroutine(Fade());
-            player.stopPlayer = true;
+                timeTransi = 5;
+
+                transiFade.SetActive(true);
+                fade.SetTrigger("Start");
+                StartCoroutine(Fade());
+                player.stopPlayer = true;
+            }
         }
         #endregion
         #region Round
         else
         {
+            timeTransi = 2;
+
+            image.SetActive(false);
+            textSell.gameObject.SetActive(false);
             currentRound++;
 
             roundSound.Play();
@@ -199,7 +233,9 @@ public class GameManager : MonoBehaviour
 
     private void End()
     {
-
+        transiFade.SetActive(true);
+        fade.SetTrigger("Start");
+        StartCoroutine(FadeEnd());
     }
 
     IEnumerator Fade()
@@ -224,5 +260,35 @@ public class GameManager : MonoBehaviour
         fade.ResetTrigger("End");
         player.stopPlayer = false;
 
+    }
+    
+    IEnumerator FadeEnd()
+    {
+        fade.SetTrigger("Start");
+        yield return new WaitForSeconds(1);
+
+        transiFade.SetActive(false);
+        fondTransi.SetActive(true);
+
+        fade.ResetTrigger("Start");
+        
+        yield return new WaitForSeconds(timeTransi);
+
+        if (win)
+        {
+            fondTransi.transform.GetChild(4).gameObject.SetActive(true);
+            textSell.text = "Curious to know what the chest contains, you open it and find a letter inside: My dear son, I hope this letter will find you someday, as I must tell you something you would never know otherwise: I am a spy for the French Liberation Army." +
+                " If I may have one piece of advice to give you, after the many lives that I had to watch, it is this one :  always manage your expenses.Enjoy your life, but do not empoverish yourself." +
+                " I look forward to see you again... For Terence, your Mother.";
+            yield return new WaitForSeconds(15);
+
+        }
+        else
+        {
+            textSell.text = "Unfortunately, Terence did not spotted the fraud and got scammed. Out of money, he is unable to keep on bidding, and so he goes back to his poor sailor life... ";
+            yield return new WaitForSeconds(10);
+        }
+
+        SceneManager.LoadScene(0);
     }
 }

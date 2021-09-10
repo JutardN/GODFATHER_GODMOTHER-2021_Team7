@@ -100,11 +100,11 @@ MonoBehaviour:
   descriptionlvl1: Imari porcelain vase, made in Japan circa 1870.
   descriptionlvl2: 
   descriptionlvl3: 
-  defaultPrice: 250
+  defaultPrice: 200
   price: 890
-  priceEachRound: f4010000260200007a030000
+  priceEachRound: f40100002602000016030000
   playerProperty: 0
-  sellingPrice: 1500
+  sellingPrice: 3000
   misePlayer: 0
 --- !u!1 &7394133373179000080
 GameObject:

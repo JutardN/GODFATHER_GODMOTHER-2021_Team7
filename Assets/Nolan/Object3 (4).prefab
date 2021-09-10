@@ -104,7 +104,7 @@ MonoBehaviour:
   descriptionlvl3: Etoile ancienne de 1000 ans
   defaultPrice: 500
   price: 3190
-  priceEachRound: dc050000f00a0000760c0000
+  priceEachRound: ee020000f00a0000760c0000
   playerProperty: 0
   sellingPrice: 8000
   misePlayer: 0
