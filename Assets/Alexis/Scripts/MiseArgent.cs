@@ -14,6 +14,8 @@ public class MiseArgent : MonoBehaviour
     public int prixDepartMoney;
     public int miseActuelleMoney;
     public int coeffMoney;
+    public AudioSource Add;
+    public AudioSource Remove;
 
     [HideInInspector]
     public int moneyValue;
@@ -78,7 +80,8 @@ public class MiseArgent : MonoBehaviour
         if (moneyValue + coeffMoney <= controller.argent + manager.saveObj.misePlayer)
         {
             moneyValue += coeffMoney;
-            moneySpend.text = "" + moneyValue;
+			moneySpend.text = "" + moneyValue;
+            Add.Play();
 
         }
 
@@ -89,6 +92,7 @@ public class MiseArgent : MonoBehaviour
         {
             moneyValue -= coeffMoney;
             moneySpend.text = "" + moneyValue;
+            Remove.Play();
 
         }
 
