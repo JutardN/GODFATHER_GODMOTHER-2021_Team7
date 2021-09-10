@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class intro : MonoBehaviour
 {
@@ -8,15 +9,21 @@ public class intro : MonoBehaviour
     public KeyCode pass;
     public Animator FadeText;
     public bool verif;
+
+    private GameManager manager;
+    private Player player;
+
     void Start()
     {
         fondNoir.SetActive(true);
+        manager = GameManager.Instance;
+        player = manager.player.playerController;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(pass)&& verif == false)
+        if (player.GetButton("Action")&& verif == false)
         {
             StartCoroutine(FadeOut());
             verif = true;

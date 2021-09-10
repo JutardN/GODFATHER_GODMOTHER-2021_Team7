@@ -37,7 +37,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer render;
 
     private int playerID = 0;
-    private Player player;
+    [HideInInspector]
+    public Player playerController;
 
     public AudioSource footStep;
     public AudioSource question;
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        player =ReInput.players.GetPlayer(playerID);
+        playerController =ReInput.players.GetPlayer(playerID);
     }
 
     // Start is called before the first frame update
@@ -69,10 +70,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        hz = player.GetAxis("Movement");
+        hz = playerController.GetAxis("Movement");
         rb.velocity = new Vector3(hz * speed, 0, 0);
 
-        if (player.GetAxis("Movement")!=0)
+        if (playerController.GetAxis("Movement")!=0)
         {
             if (hz > 0)
             {
@@ -105,7 +106,7 @@ public class PlayerController : MonoBehaviour
     {
         if (objCollision)
         {
-            if (player.GetButtonDown("Action") && !canvasOpen)
+            if (playerController.GetButtonDown("Action") && !canvasOpen)
             {
                 gameManager.OpenCanvas(saveObj);
                 canvasOpen = true;
@@ -113,7 +114,7 @@ public class PlayerController : MonoBehaviour
                 question.Play();
 
             }
-            else if(player.GetButtonDown("Action") && canvasOpen)
+            else if(playerController.GetButtonDown("Action") && canvasOpen)
             {
                 interact.gameObject.SetActive(true);
                 gameManager.CloseCanvas();
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
         //    UpgradeLevelKnowledge();
         //}
 
-        if(onCouch && player.GetButtonDown("Action"))
+        if(onCouch && playerController.GetButtonDown("Action"))
         {
             gameManager.passRoundOrDay();
         }

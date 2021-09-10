@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
         {
             arrow.SetActive(true);
         }
+        scriptMise.StartCoroutine("WaitBeforeValidate");
     }
 
     public void CloseCanvas()
@@ -101,6 +102,8 @@ public class GameManager : MonoBehaviour
         objectToShow.gameObject.SetActive(false);
         saveObj = null;
         arrow.SetActive(false);
+        scriptMise.StopAllCoroutines();
+        scriptMise.inMenu = false;
     }
 
     public void passRoundOrDay()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Rewired;
 
 public class MiseArgent : MonoBehaviour
 {
@@ -18,19 +19,58 @@ public class MiseArgent : MonoBehaviour
     public int moneyValue;
 
     PlayerController controller;
-
+    Player playerController;
+    public bool inMenu;
+    private bool betBool;
+    private Coroutine currentCor;
     // Start is called before the first frame update
     void Start()
     {
         manager = GameManager.Instance;
         controller = manager.player;
-        
+        playerController = manager.player.playerController;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerController.GetButton("Action") && inMenu)
+        {
+            ValiderMoney();
+        }
+        if (playerController.GetButton("Cancel"))
+        {
+            AnnulerMoney();
+        }
 
+        if (playerController.GetAxis("Bet") > 0 && betBool)
+        {
+            addMoney();
+            betBool = false;
+            currentCor = null;
+            currentCor = StartCoroutine("WaitBeforeNextBet");
+        }
+        else if (playerController.GetAxis("Bet") < 0 && betBool)
+        {
+            subMoney();
+            betBool = false;
+            currentCor = null;
+            currentCor = StartCoroutine("WaitBeforeNextBet");
+        }
+    }
+
+    IEnumerator WaitBeforeValidate()
+    {
+        yield return new WaitForSeconds(0.2f);
+        inMenu = true;
+        currentCor = null;
+        currentCor = StartCoroutine("WaitBeforeNextBet");
+    }
+
+    IEnumerator WaitBeforeNextBet()
+    {
+        yield return new WaitForSeconds(0.3f);
+        betBool=true;
     }
 
     public void addMoney()
